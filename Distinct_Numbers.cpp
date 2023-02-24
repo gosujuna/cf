@@ -18,4 +18,14 @@ int main() {
 	 ios_base::sync_with_stdio(false), cin.tie(nullptr);
 	 int T;
 	 cin >> T;
+
+	 set<int> s;
+	 int a;
+
+	 for (int i = 0; i < T; i++) {
+		cin >> a;
+		s.insert(a);
+	 }
+
+	 cout << s.size() << endl;
 }

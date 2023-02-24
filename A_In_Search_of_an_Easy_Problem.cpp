@@ -13,4 +13,19 @@ template <typename T> T pow(T a, long long b) {
 	return r;
 }
 
-int main() { ios_base::sync_with_stdio(false), cin.tie(nullptr); }
+int main() {
+	 ios_base::sync_with_stdio(false), cin.tie(nullptr);
+	 int T;
+	 cin >> T;
+
+	vector<int> test(T);
+
+	 for (int i = 0; i < T; i++){
+		cin >> test[i];
+	 }
+
+	if (find(test.begin(), test.end(), 1) != test.end())
+		cout << "HARD";
+	else
+		cout << "EASY";
+}

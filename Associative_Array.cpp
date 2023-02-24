@@ -18,4 +18,20 @@ int main() {
 	 ios_base::sync_with_stdio(false), cin.tie(nullptr);
 	 int T;
 	 cin >> T;
+
+	 map<int, int> m;
+
+	 int a, b,c;
+
+	 for (int i = 0; i < T; i++){
+		cin >> a;
+		if (a == 0) {
+			cin >> b >> c;
+			m[b] = c;
+		}
+		else{
+			cin >> b;
+			cout << m[b] << endl;
+		}
+	 }
 }
