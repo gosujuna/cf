@@ -11,8 +11,9 @@
             "command": "g++",
             "args": [
                 "-fdiagnostics-color=always",
-                "-std=c++17",
+                "-std=c++20",
                 "-O2",
+
                 "-Wall",
                 "${file}",
                 "-o",
@@ -41,7 +42,7 @@
             "command": "g++.exe",
             "args": [
                 "-fdiagnostics-color=always",
-                "-std=c++17",
+                "-std=c++20",
                 "-Wall",
                 "-g",
                 "${file}",
@@ -60,9 +61,10 @@
         {
             "type": "cppbuild",
             "label": "C/C++: g++.exe 활성 파일 빌드",
-            "command": "C:\\MinGW\\bin\\g++.exe",
+            "command": "C:\\Program Files\\msys64\\mingw64\\bin\\g++.exe",
             "args": [
                 "-fdiagnostics-color=always",
+				"-std=c++20",
                 "-g",
                 "${file}",
                 "-o",
@@ -78,6 +80,26 @@
                 "kind": "build",
                 "isDefault": true
             },
+            "detail": "디버거에서 생성된 작업입니다."
+        },
+        {
+            "type": "cppbuild",
+            "label": "C/C++: cpp.exe 활성 파일 빌드",
+            "command": "C:\\Program Files\\msys64\\mingw64\\bin\\cpp.exe",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-g",
+                "${file}",
+                "-o",
+                "${fileDirname}\\${fileBasenameNoExtension}.exe"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "build",
             "detail": "디버거에서 생성된 작업입니다."
         }
     ],

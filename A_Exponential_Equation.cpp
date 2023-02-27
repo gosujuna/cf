@@ -2,9 +2,6 @@
 using namespace std;
 using ll = long long;
 
-#define sz(v) ((int)(v).size())
-#define all(v) (v).begin(), (v).end()
-
 template <typename T> T pow(T a, long long b) {
 	assert(b >= 0);
 	T r = 1;
@@ -18,9 +15,18 @@ template <typename T> T pow(T a, long long b) {
 }
 
 int main() {
-	//	freopen("input.txt", "r", stdin);
-	//	freopen("output.txt", "w", stdout);
 	 ios_base::sync_with_stdio(false), cin.tie(nullptr);
 	 int T;
 	 cin >> T;
+	 while (T--){
+		ll a;
+		cin >> a;
+
+		if (a % 2 == 0) {
+			cout << a/2 << " " << 1 << endl;
+		}
+		else{
+			cout << -1 << endl;
+		}
+	 }
 }

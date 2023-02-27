@@ -23,4 +23,15 @@ int main() {
 	 ios_base::sync_with_stdio(false), cin.tie(nullptr);
 	 int T;
 	 cin >> T;
+	 while (T--){
+		ll x, y;
+		cin >> x >> y;
+
+		cout << (x - y) * 2 << endl;
+		for (int i = y; i < x; i++)
+			cout << i << " ";
+		for (int i = x; i > y; i--)
+			cout << i << " ";
+		cout << endl;
+	 }
 }
