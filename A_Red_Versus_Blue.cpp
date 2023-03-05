@@ -38,24 +38,29 @@ int main() {
 		//int diff = r - b+1;
 		for (int i = 0; i < len; i++){
 			append += test;
+			
 		}
 
 
 		for (int i = 0; i < b; i++){
 
 			ans += append;
+			if (left >0){
+				ans += test;
+				left--;
+			}
 			ans += test2;
 
 		}
 		ans += append;
-
-		for (int i = 0; i < left; i++){
-			diff += test;
+		if (left >0){
+				ans += test;
+				left--;
 		}
-		
+
+		//get rid of diff and spread it out   
 
 
-		ans += diff;
 		cout << ans << endl;
 	 }
 }
