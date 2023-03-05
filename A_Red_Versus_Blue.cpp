@@ -28,7 +28,7 @@ int main() {
 		cin >> n >> r >> b;
 
 		string ans = "";
-		int len = r / b;
+		int len = r / (b+1);
 		string test = "R";
 		string test2 = "B";
 		string append = "";
