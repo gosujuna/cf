@@ -33,6 +33,20 @@ void solve(){
 		return;
 	}
 
+	if (n % 2 == 0){
+
+		cout << "YES" << endl;
+
+		for (int i = 1; i <= (n);i++){
+			for (int j = 0; j < k; j++){
+				cout << i + j * n << " ";
+			}
+			cout << endl;
+		}
+	} else{
+		cout << "NO" << endl;
+	}
+
 
 }
 int main() {
