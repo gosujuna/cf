@@ -26,6 +26,21 @@ int main() {
 	 while(T--){
 		int n;
 		cin >> n;
-		
-	 }
+
+		int b = 1;
+		int count = 0;
+		while (b<= n){
+			count++;
+			b = b * 2;
+		}
+
+		for (int i = 0; i < b-1; i++){
+			cout << (b - 1) - i << " ";
+		}
+
+		for (int i = b; i < n; i++){
+			cout << i << " ";
+		}
+		cout << endl;
+	}
 }
