@@ -23,4 +23,19 @@ int main() {
 	 ios_base::sync_with_stdio(false), cin.tie(nullptr);
 	 int T;
 	 cin >> T;
+	 while (T--){
+		int n, r, b;
+		cin >> n >> r >> b;
+
+		string ans = "";
+		int len = r / (b+1);
+		//int diff = r - b+1;
+		for (int i = 0; i < len; i++){
+			ans += r * (len - 1);
+			ans += b;
+
+		}
+		ans += r * (len - 1);
+		cout << ans << endl;
+	 }
 }
