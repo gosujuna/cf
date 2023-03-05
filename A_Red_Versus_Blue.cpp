@@ -35,12 +35,12 @@ int main() {
 		string diff = "";
 
 		//int diff = r - b+1;
-		for (int i = 0; i < (r/len); i++){
+		for (int i = 0; i < len; i++){
 			append += test;
 		}
 
 
-		for (int i = 0; i < len; i++){
+		for (int i = 0; i < (r/len); i++){
 
 			ans += append;
 			ans += test2;
