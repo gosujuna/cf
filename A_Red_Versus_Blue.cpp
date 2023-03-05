@@ -29,20 +29,30 @@ int main() {
 
 		string ans = "";
 		int len = r / (b+1);
-		string i = "r";
-		string j = "b";
+		string test = "R";
+		string test2 = "B";
+		string append = "";
+		string diff = "";
+
 		//int diff = r - b+1;
-		string x = "i"*  r * (len - 1);
-		string y = "j" * r * (len-1);
-		string z = "i" * r;
+		for (int i = 0; i < (r/len); i++){
+			append += test;
+		}
+
 
 		for (int i = 0; i < len; i++){
 
-			ans += x;
-			ans += y;
+			ans += append;
+			ans += test2;
 
 		}
-		ans += z;
+
+		for (int i = 0; i < (r % len); i++){
+			diff += test;
+		}
+
+
+		ans += diff;
 		cout << ans << endl;
 	 }
 }
