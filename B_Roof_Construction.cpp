@@ -30,8 +30,11 @@ int main() {
 		int b = 1;
 		int count = 0;
 		while (b<= n){
-			count++;
-			b = b * 2;
+			if (b*2 <= n){
+				count++;
+				b = b * 2;
+			}
+
 		}
 
 		for (int i = 0; i < b-1; i++){
