@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 using ll = long long;
-#define endl '\n'
+
 #define sz(v) ((int)(v).size())
 #define all(v) (v).begin(), (v).end()
 
@@ -23,4 +23,34 @@ int main() {
 	 ios_base::sync_with_stdio(false), cin.tie(nullptr);
 	 int T;
 	 cin >> T;
+
+	 while(T--){
+		int n;
+		ll x;
+		cin >> n >> x;
+
+		vector<ll> a(n);
+
+		for(auto& i : a){
+			cin >> i;
+		}
+		int min = a[0];
+		int max = a[0];
+
+		int res = 0;
+		for (int i = 1; i < n; i++){
+			if (a[i] > max){
+				max = a[i];
+			}
+			if (a[i] < min){
+				min = a[i];
+			}
+			if (max - min > 2*x){
+				res++;
+				min = max = a[i];
+			}
+		}
+
+		cout << res << '\n';
+	 }
 }
