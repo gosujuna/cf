@@ -30,12 +30,16 @@ int main() {
 		string ans = "";
 		int len = r / (b+1);
 		//int diff = r - b+1;
+		string x = "r"*  r * (len - 1);
+		string y = "b" * r * (len-1);
+
 		for (int i = 0; i < len; i++){
-			ans += r * (len - 1);
-			ans += b;
+
+			ans += x;
+			ans += y;
 
 		}
-		ans += r * (len - 1);
+		ans += "r" * r;
 		cout << ans << endl;
 	 }
 }
