@@ -28,7 +28,8 @@ int main() {
 		cin >> n >> r >> b;
 
 		string ans = "";
-		int len = r / (b+1);
+		int len = r / (b + 1);
+		int left = r % (b + 1);
 		string test = "R";
 		string test2 = "B";
 		string append = "";
@@ -46,10 +47,12 @@ int main() {
 			ans += test2;
 
 		}
+		ans += append;
 
-		for (int i = 0; i < (r % len); i++){
+		for (int i = 0; i < left; i++){
 			diff += test;
 		}
+		
 
 
 		ans += diff;
