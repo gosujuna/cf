@@ -21,15 +21,13 @@ void solve(){
 	cin >> n >> k;
 	//int total = n * k;
 
-	if (k % 2 ==1){
+	if (k == 1){
 		cout << "YES" << endl;
 		int count = 1;
 
-		for (int i = 0; i < n;i++){
-			for (int j = 0; j < k; j++){
-				cout << count << " ";
-				count++;
-			}
+		for (int i = 0; i < (n*k);i++){
+			cout << count << " ";
+			count++;
 			cout << endl;
 		}
 		return;
