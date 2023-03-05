@@ -29,9 +29,12 @@ int main() {
 
 		string ans = "";
 		int len = r / (b+1);
+		string i = "r";
+		string j = "b";
 		//int diff = r - b+1;
-		string x = "r"*  r * (len - 1);
-		string y = "b" * r * (len-1);
+		string x = "i"*  r * (len - 1);
+		string y = "j" * r * (len-1);
+		string z = "i" * r;
 
 		for (int i = 0; i < len; i++){
 
@@ -39,7 +42,7 @@ int main() {
 			ans += y;
 
 		}
-		ans += "r" * r;
+		ans += z;
 		cout << ans << endl;
 	 }
 }
