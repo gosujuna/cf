@@ -13,7 +13,7 @@ template <class T> class MinSegmentTree {
 	/** The operation to use for combining two elements. (Must be associative)
 	 */
 	T comb(T a, T b) { return std::min(a, b); }
-	const T DEFAULT = 1e18;  // Will overflow if T is an int
+	const T DEFAULT = 1e9  // Will overflow if T is an int
 
 	vector<T> segtree;
 	int len;
