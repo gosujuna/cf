@@ -1,0 +1,80 @@
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+using str = string; // ben qi python
+#define endl '\n'
+#define sz(v) ((int)(v).size())
+#define all(v) (v).begin(), (v).end()
+
+template <typename T> T pow(T a, long long b) {
+	assert(b >= 0);
+	T r = 1;
+	while (b) {
+		if (b & 1)
+			r *= a;
+		b >>= 1;
+		a *= a;
+	}
+	return r;
+}
+
+int main() {
+	//	freopen("input.txt", "r", stdin);
+	//	freopen("output.txt", "w", stdout);
+	 ios_base::sync_with_stdio(false), cin.tie(nullptr);
+	 int T;
+	 cin >> T;
+	 while(T--){
+		int n;
+		cin >> n;
+		vector<int> a(n);
+		int count1 = 0;
+		int count2 = 0;
+		for (auto& i:a){
+			cin >> i;
+			if (i == 1){
+				count1++;
+			}
+			else{
+				count2++;
+			}
+		}
+
+		if (count1 == 0){
+			cout << count1 << endl;
+			continue;
+		}
+		//cout << count1 << endl; //count1 is num of pigs
+		int full = 0;
+		int low = 0;
+		int empty = 0;
+
+
+		for (int i = 0; i < n; i++){
+			if (a[i] == 1){
+
+				
+				empty++;
+				low = max(low, empty + full);
+			}
+			else{
+				if ((empty % 2 == 1) && empty > 2){
+					full = full + (empty-1)/2;
+					empty =1;
+					
+
+				}
+				if ((empty % 2 == 0) && empty > 2){
+					full = full -1 + empty/2;
+					empty =2;
+					
+				}
+				
+				low = max(low, empty + full);
+				// if 2 empty makes cells /2 +1
+			}
+		}
+
+		cout << min(low, count1) << endl;
+	 }
+}

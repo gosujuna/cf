@@ -100,6 +100,6 @@
     "editor.formatOnSave": true,
 	"task.showDecorations": false,
 	"C_Cpp.errorSquiggles": "disabled",
-	"gitdoc.enabled": true,
+	"gitdoc.enabled": false,
 
 }

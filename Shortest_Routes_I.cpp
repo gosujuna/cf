@@ -1,68 +1,73 @@
-#include <bits/stdc++.h>
-using namespace std;
-using ll = long long;
+#include <algorithm>
+#include <cassert>
+#include <iostream>
+#include <vector>
 
-template <typename T> T pow(T a, long long b) {
-	assert(b >= 0);
-	T r = 1;
-	while (b) {
-		if (b & 1)
-			r *= a;
-		b >>= 1;
-		a *= a;
-	}
-	return r;
-}
-vector<pair<int, int>> graph[100000];
-//adjacency list of (neighbort, edgeweight) so there should be multiple. it is of the form graph[a], where a = [(b,c),(b,c),(b,c)]...
-int n, m;
-ll dist[100000]; //graph that stores shortest dist from source node
+using std::cout;
+using std::endl;
+using std::vector;
 
-void dijkstra(int src) {
-	for (int i = 0; i < n; i++) dist[i] = LLONG_MAX; // initalize dist array to inf
+/** A data structure that can answer point update & range minimum queries. */
+template <class T> class MinSegmentTree {
+  private:
+	/** The operation to use for combining two elements. (Must be associative)
+	 */
+	T comb(T a, T b) { return std::min(a, b); }
+	const T DEFAULT = 1e18;  // Will overflow if T is an int
 
-	using T = pair<ll, int>; //T combines ll and int
+	vector<T> segtree;
+	int len;
 
-	priority_queue<T, vector<T>, greater<T>> pq; // least comes first. pq has values {cost,node)
-	dist[src] = 0;
+  public:
+	MinSegmentTree(int len) : len(len), segtree(len * 2, DEFAULT) {}
 
-	pq.push({0,src}); // 0,src pushed to top of node..  dist(itself) = 0, so we push (0, src)
-
-	while (pq.size()) { //until nothing in pq
-		ll cdist;
-		int node;
-		tie(cdist, node) = pq.top(); // tie top of pq together so currently cdist,node is the smallest distance to node that is checked to be compared
-		pq.pop(); // pop top of queue
-
-		if (cdist != dist[node])
-			continue; //stops from looping through adjlist (graph). if this is true then no need to consider this case.
-		
-		for(pair<int,int> i:  graph[node]) { // for adj of node i: if cost of popped node plus cost of road is smaller than smallest distance
-			if (cdist + i.second < dist[i.first]) { //  update
-				pq.push({dist[i.first] = cdist + i.second, i.first}); //insert to pq (dist[neighbor], neighbor). since dist(neighbor) is big we used that.
-			}
-
+	/** Sets the value at ind to val. */
+	void set(int ind, T val) {
+		assert(0 <= ind && ind < len);
+		ind += len;
+		segtree[ind] = val;
+		for (; ind > 1; ind /= 2) {
+			segtree[ind >> 1] = comb(segtree[ind], segtree[ind ^ 1]);
 		}
-
-
 	}
-	 
-}
 
+	/** @return the minimum element in the range [start, end) */
+	T range_min(int start, int end) {
+		assert(0 <= start && start < len && 0 < end && end <= len);
+		T sum = DEFAULT;
+		for (start += len, end += len; start < end; start /= 2, end /= 2) {
+			if ((start & 1) != 0) { sum = comb(sum, segtree[start++]); }
+			if ((end & 1) != 0) { sum = comb(sum, segtree[--end]); }
+		}
+		return sum;
+	}
+};
 
 int main() {
-	 ios_base::sync_with_stdio(false), cin.tie(nullptr);
-	 
-	 cin >> n >> m;
+	int arr_len;
+	int query_num;
+	std::cin >> arr_len >> query_num;
 
-	 for (int i = 0; i < m; i++){
-		int a, b, c;
-		cin >> a >> b >> c; //node (a,b) has cost c
-		graph[a - 1].push_back({b - 1, c}); //a,b decreased by 1 to match index to 0. 
-	 }
+	MinSegmentTree<int> segtree(arr_len);
+	for (int i = 0; i < arr_len; i++) {
+		int n;
+		std::cin >> n;
+		segtree.set(i, n);
+	}
 
-	 dijkstra(0);
-
-	 for (int i = 0; i < n; i++)
-		cout << dist[i] << " ";
+	for (int q = 0; q < query_num; q++) {
+		int type;
+		std::cin >> type;
+		if (type == 1) {
+			int ind;
+			int val;
+			std::cin >> ind >> val;
+			segtree.set(ind - 1, val);
+		} else if (type == 2) {
+			int start;
+			int end;
+			std::cin >> start >> end;
+			cout << segtree.range_min(start - 1, end) << '\n';
+		}
+	}
 }

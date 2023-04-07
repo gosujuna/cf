@@ -28,17 +28,13 @@ int main() {
 		cin >> n;
 
 		int b = 1;
-		int count = 0;
-		while (b<= n){
-			if (b*2 <= n){
-				count++;
-				b = b * 2;
-			}
 
+		while (b*2< n){
+			b *= 2;
 		}
 
-		for (int i = 0; i < b-1; i++){
-			cout << (b - 1) - i << " ";
+		for (int i = b-1; i >= 0; i--){
+			cout << i << " ";
 		}
 
 		for (int i = b; i < n; i++){
