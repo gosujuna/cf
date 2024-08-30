@@ -101,5 +101,6 @@
 	"task.showDecorations": false,
 	"C_Cpp.errorSquiggles": "disabled",
 	"gitdoc.enabled": false,
+	"cph.language.cpp.SubmissionCompiler": "GNU G++20 13.2 (64 bit, winlibs)",
 
 }
