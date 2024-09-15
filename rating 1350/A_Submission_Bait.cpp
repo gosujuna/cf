@@ -14,44 +14,31 @@ using i64 = long long;
 #define endl '\n'
 #define sz(v) ((int)(v).size())
 #define all(v) (v).begin(), (v).end()
-template <typename T> T pow(T a, long long b) {
-	assert(b >= 0);
-	T r = 1;
-	while (b) {
-		if (b & 1)
-			r *= a;
-		b >>= 1;
-		a *= a;
-	}
-	return r;
-}
+
 
 void solve(){
 	// looknice;
 	int n;
+	
 	cin >> n;
 	vector<int> a(n);
-	 for (auto& i:a) cin >>i;
-	vector<int> ans;
-	sort(all(a));
-	int l,r;
-	l = a[0];
-	r =  a[sz(a)-1];
-
-	while (l<r){
-		int x = l%2;
-		ans.push_back(x);
-		l = (l+x)/2;
-		r = (r+x)/2;
+	bool ok = false;
+	vector<int> cnt(n+1);
+	for (int i =0; i<n; i++){
+		cin >> a[i];
+		cnt[a[i]]++;
 	}
-	cout << sz(ans) << endl;
-	if (sz(ans) <= n){
-		for (auto& i:ans){
-		cout << i << " ";
-	}
-	cout << endl;
+	for (int i =1; i<=n; i++){
+		if (cnt[i] % 2){
+			ok = true;
+			break;
+		}
 	}
 	
+	
+	
+	
+	cout << ((ok) ? "YES" : "NO") << endl;
 	
 	
 }
@@ -64,3 +51,4 @@ signed main() {
 		solve();
 	 }
 }
+

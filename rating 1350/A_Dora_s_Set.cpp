@@ -28,29 +28,19 @@ template <typename T> T pow(T a, long long b) {
 
 void solve(){
 	// looknice;
-	int n;
-    std::cin >> n;
-    
-    int cnt[30] {};
-    for (int i = 0; i < n; i++) {
-        int a;
-        std::cin >> a;
-        for (int j = 0; j < 30; j++) {
-            cnt[j] += a >> j & 1;
-        }
-    }
-    
-    int ans = 0;
-    for (int i = 0; i < 30; i++) {
-        ans = std::gcd(ans, cnt[i]);
-    }
-    for (int i = 1; i <= n; i++) {
-        if (ans % i == 0) {
-            std::cout << i << " ";
-        }
-    }
-    std::cout << "\n";
-	
+	int l,r;
+	cin >> l >> r;
+	if (r % 2 == 1){
+		r++;
+	}
+	int ans = (r-l+1)/4;
+	cout << ans << endl;
+
+	// 4-8
+
+	// 4 5 7
+	// mod 1 2 3
+	// mod 0 1 3
 }
 
 signed main() {
