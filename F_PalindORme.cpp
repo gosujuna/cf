@@ -14,6 +14,7 @@ using i64 = long long;
 #define endl '\n'
 #define sz(v) ((int)(v).size())
 #define all(v) (v).begin(), (v).end()
+
 using i64 = long long;
 template<class T>
 constexpr T power(T a, i64 b) {
@@ -231,7 +232,7 @@ int MInt<0>::Mod = 1;
 template<int V, int P>
 constexpr MInt<P> CInv = MInt<P>(V).inv();
  
-constexpr int P = 1e9 + 7;
+constexpr int P = 998244353;
 using Z = MInt<P>;
 
 // TAKE ONLY IF U WANT BIONIMALS / FACTORIALS
@@ -282,39 +283,16 @@ struct Comb {
         return fac(n) * invfac(m) * invfac(n - m);
     }
 } comb;
-
 void solve(){
 	// looknice;
-	int n,k;
-	cin >> n >> k;
-	vector<int> a(n+1);
-	vector dp(n+1, vector<Z>(64,0));
-	for (int i =1; i<=n; i++){
-		cin >> a[i];
-		for (int j=0; j<64; j++){
-			dp[i][j] += dp[i-1][j];
-			dp[i][a[i] & j] += dp[i-1][j];
-		}
-		dp[i][a[i]] = dp[i][a[i]] + 1;
-	}
-
-
-	Z ans = 0;
-	for (int i =0; i<64; i++){
-		if (__builtin_popcount(i) == k)
-		ans += dp[n][i];
-	}
-	cout << ans << endl;
-
+	int n , k, m;
+	
 	
 }
 
 signed main() {
 	 ios_base::sync_with_stdio(false), cin.tie(nullptr);
 	 
-	 int T;
-	 cin >> T;
-	 while (T--){
 		solve();
-	 }
+	 
 }

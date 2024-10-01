@@ -14,6 +14,7 @@ using i64 = long long;
 #define endl '\n'
 #define sz(v) ((int)(v).size())
 #define all(v) (v).begin(), (v).end()
+
 using i64 = long long;
 template<class T>
 constexpr T power(T a, i64 b) {
@@ -234,84 +235,37 @@ constexpr MInt<P> CInv = MInt<P>(V).inv();
 constexpr int P = 1e9 + 7;
 using Z = MInt<P>;
 
-// TAKE ONLY IF U WANT BIONIMALS / FACTORIALS
+void solve() {
+    string s;
+    cin >> s;
+    int n = s.length();
 
-struct Comb {
-    int n;
-    std::vector<Z> _fac;
-    std::vector<Z> _invfac;
-    std::vector<Z> _inv;
-    
-    Comb() : n{0}, _fac{1}, _invfac{1}, _inv{0} {}
-    Comb(int n) : Comb() {
-        init(n);
+    map<int, vector<int>> sum_indices;
+    sum_indices[0].push_back(0);  
+
+    int sum = 0;
+    for (int i = 0; i < n; ++i) {
+        sum += (s[i] == '1' ? 1 : -1);
+        sum_indices[sum].push_back(i + 1);
     }
-    
-    void init(int m) {
-        m = std::min(m, Z::getMod() - 1);
-        if (m <= n) return;
-        _fac.resize(m + 1);
-        _invfac.resize(m + 1);
-        _inv.resize(m + 1);
-        
-        for (int i = n + 1; i <= m; i++) {
-            _fac[i] = _fac[i - 1] * i;
+
+	debug(sum_indices);  
+
+    Z ans = 0;
+    for (const auto& [sum, indices] : sum_indices) {
+        int m = indices.size();
+        Z total = 0;
+        for (int i = 0; i < m; ++i) {
+            ans += total * (n - indices[i] + 1);
+            total += indices[i] + 1;
         }
-        _invfac[m] = _fac[m].inv();
-        for (int i = m; i > n; i--) {
-            _invfac[i - 1] = _invfac[i] * i;
-            _inv[i] = _invfac[i] * _fac[i - 1];
-        }
-        n = m;
     }
-    
-    Z fac(int m) {
-        if (m > n) init(2 * m);
-        return _fac[m];
-    }
-    Z invfac(int m) {
-        if (m > n) init(2 * m);
-        return _invfac[m];
-    }
-    Z inv(int m) {
-        if (m > n) init(2 * m);
-        return _inv[m];
-    }
-    Z binom(int n, int m) {
-        if (n < m || m < 0) return 0;
-        return fac(n) * invfac(m) * invfac(n - m);
-    }
-} comb;
 
-void solve(){
-	// looknice;
-	int n,k;
-	cin >> n >> k;
-	vector<int> a(n+1);
-	vector dp(n+1, vector<Z>(64,0));
-	for (int i =1; i<=n; i++){
-		cin >> a[i];
-		for (int j=0; j<64; j++){
-			dp[i][j] += dp[i-1][j];
-			dp[i][a[i] & j] += dp[i-1][j];
-		}
-		dp[i][a[i]] = dp[i][a[i]] + 1;
-	}
-
-
-	Z ans = 0;
-	for (int i =0; i<64; i++){
-		if (__builtin_popcount(i) == k)
-		ans += dp[n][i];
-	}
-	cout << ans << endl;
-
-	
+    cout << ans << '\n';
 }
 
 signed main() {
 	 ios_base::sync_with_stdio(false), cin.tie(nullptr);
-	 
 	 int T;
 	 cin >> T;
 	 while (T--){
