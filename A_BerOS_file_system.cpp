@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+
 using namespace std;
 
 #ifndef ONLINE_JUDGE
@@ -8,23 +9,39 @@ using namespace std;
 #endif
 
 #define int long long
+using str = string; // ben qi python
 using i64 = long long;
 using u64 = unsigned long long;
 #define endl '\n'
 #define sz(v) ((int)(v).size())
 #define all(v) (v).begin(), (v).end()
 mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
+// (random rng if you need it)
 
 void solve(){
-
+	// looknice;
 	
+	string s;
+	cin >> s;
+	int n = s.size();
+	string t;
+
+	for (auto c : s){
+		if (!t.empty() && t.back() == '/' && c == '/'){
+			continue;
+		}
+		t += c;
+	}
+
+	while (t.size() > 1 && t.back() == '/'){
+		t.pop_back();
+	}
+	cout << t << endl;
 }
 
 signed main() {
 	 ios_base::sync_with_stdio(false), cin.tie(nullptr);
-	 int T;
-	 cin >> T;
-	 while (T--){
+	 
 		solve();
-	 }
+	 
 }
